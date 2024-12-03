@@ -1,3 +1,4 @@
+# import icecream as ic
 def wFile(filename, todos):
     """
     Write todo list to file
@@ -25,15 +26,26 @@ def rFile(filename) -> list:
 
     return content
 
-def addTodo(filename):
-    todo = input("Enter a todo: ") + '\n'
+def addTodo(filename, todo):
+    """add todo in todo file
+
+    Args:
+        filename (str): the file name which you store todo list
+        todo (str): todo 
+    """
+    todo = todo + '\n'
     todos = rFile(filename)
     todos.append(todo)
     wFile(filename, todos)
 
 def showTodos(filename) -> list:
-    """
-    
+    """show todo list and return todos by list
+
+    Args:
+        filename (str): the file name which you store todo list
+        
+    Returns:
+        list: returned todo list 
     """
     todos=rFile(filename)
     for index, item in enumerate(todos):
@@ -43,6 +55,11 @@ def showTodos(filename) -> list:
 
 
 def editTodo(filename):
+    """start edit your todo, you need to put the number and new todo.
+
+    Args:
+        filename (str): the file name which you store todo list
+    """
     number = int(input("Number of the todo to edit: "))
     number = number - 1
     new_todo = input("Enter new todo: ")
@@ -51,6 +68,11 @@ def editTodo(filename):
     wFile(filename, todos)
 
 def completeTodo(filename):
+    """Start complete your todos and choose a number which you finished.
+
+    Args:
+        filename (str): the file name which you store todo list
+    """
     todos = showTodos(filename)
     number = int(input("Please choose the complete todo in list: ")) - 1
     todos.pop(number)

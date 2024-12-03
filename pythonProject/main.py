@@ -1,19 +1,18 @@
-import icecream as ic
 import functions as fun
-
+import time
 filename = 'todos.txt'
 while True:
-    user_action = input("Type add,  show, edit or exit: ")
-    user_action = user_action.strip()
-
-    match user_action:
-        case 'add':
-            fun.addTodo(filename)
-        case 'show':
-            fun.showTodos(filename)
-        case 'edit':
-            fun.editTodo(filename)
-        case 'complete':
-            fun.completeTodo(filename)
-        case 'exit':
-            break
+    print(time.strftime("%a, %d %b %Y %H:%M:%S", gmtime()))
+    user_action = input("Type add, show, edit or exit with your todo item: ")
+    
+    if user_action.startswith("add"):
+        todo = user_action = user_action[4:]
+        fun.addTodo(filename, todo)
+    elif user_action.startswith("show"):
+        fun.showTodos(filename)
+    elif user_action.startswith("edit"):
+        fun.editTodo(filename)
+    elif user_action.startswith("complete"):
+        fun.completeTodo(filename)
+    elif user_action.startswith("exit"):
+        break
