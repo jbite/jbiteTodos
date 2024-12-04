@@ -1,7 +1,10 @@
-import functions as fun
 import time
+import functions as fun
+
+
 filename = 'todos.txt'
 while True:
+    
     print(time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime()))
     user_action = input("Type add, show, edit or exit with your todo item: ")
     
