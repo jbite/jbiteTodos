@@ -1,5 +1,6 @@
 # import icecream as ic
-def wFile(filename, todos):
+FILENAME = 'todos.txt'
+def wFile(filename=FILENAME, todos=[]):
     """
     Write todo list to file
 
@@ -11,7 +12,7 @@ def wFile(filename, todos):
     with open(filename, 'w') as f:
         f.writelines(todos)
 
-def rFile(filename) -> list:
+def rFile(filename=FILENAME) -> list:
     """
     write content into file
 
@@ -26,7 +27,7 @@ def rFile(filename) -> list:
 
     return content
 
-def addTodo(filename, todo):
+def addTodo(filename=FILENAME, todo=''):
     """add todo in todo file
 
     Args:
@@ -39,7 +40,7 @@ def addTodo(filename, todo):
     todos.append(todo)
     wFile(filename, todos)
 
-def showTodos(filename) -> list:
+def showTodos(filename=FILENAME) -> list:
     """show todo list and return todos by list
 
     Args:
@@ -49,14 +50,14 @@ def showTodos(filename) -> list:
         list: returned todo list 
     """
 
-    todos=rFile(filename)
+    todos=rFile(filename=FILENAME)
     for index, item in enumerate(todos):
         print(f"{index + 1}-{item.strip("\n")}")
 
     return todos
 
 
-def editTodo(filename):
+def editTodo(filename=FILENAME):
     """start edit your todo, you need to put the number and new todo.
 
     Args:
@@ -66,18 +67,18 @@ def editTodo(filename):
     number = int(input("Number of the todo to edit: "))
     number = number - 1
     new_todo = input("Enter new todo: ")
-    todos = rFile(filename)
+    todos = rFile(filename=FILENAME)
     todos[number] = new_todo + '\n'
-    wFile(filename, todos)
+    wFile(filename=FILENAME, todos=todos)
 
-def completeTodo(filename):
+def completeTodo(filename=FILENAME):
     """Start complete your todos and choose a number which you finished.
 
     Args:
         filename (str): the file name which you store todo list
     """
 
-    todos = showTodos(filename)
+    todos = showTodos(filename=FILENAME)
     number = int(input("Please choose the complete todo in list: ")) - 1
     todos.pop(number)
-    wFile(filename, todos) 
+    wFile(filename=FILENAME, todos=todos) 
